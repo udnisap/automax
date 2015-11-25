@@ -19,6 +19,11 @@
     "productivity"
   ],
   "repository": "udnisap/gollum",
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "q": "^1.4.1",
+    "webdriverio": "^3.2.6"
+  },
   "devDependencies": {
     "gulp": "^3.6.0",
     "gulp-eslint": "^1.0.0",
