@@ -21,6 +21,7 @@
   "repository": "udnisap/gollum",
   "dependencies": {
     "lodash": "^3.10.1",
+    "minimist": "^1.2.0",
     "q": "^1.4.1",
     "webdriverio": "^3.2.6"
   },
@@ -40,7 +41,8 @@
   },
   "scripts": {
     "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "test": "gulp",
+    "start": "node dist/index.js"
   },
   "license": "Apache-2.0"
 }

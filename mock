@@ -1,0 +1,3 @@
+window.url('http://google.com');
+
+window.newWindow('http://yahoo.com');

@@ -1,6 +1,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
+var process = require('child_process');
 var excludeGitignore = require('gulp-exclude-gitignore');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
@@ -22,6 +23,11 @@ gulp.task('static', function () {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
+
+gulp.task('watch', function () {
+  gulp.watch('./lib/*.js', ['babel']);
+});
+
 
 gulp.task('nsp', function (cb) {
   nsp({package: path.resolve('package.json')}, cb);
@@ -71,4 +77,4 @@ gulp.task('clean', function () {
 });
 
 gulp.task('prepublish', ['nsp', 'babel']);
-gulp.task('default', ['static', 'test', 'coveralls']);
+gulp.task('default', ['watch', 'babel']);
