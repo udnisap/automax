@@ -1,7 +1,7 @@
 {
-  "name": "gollum",
-  "version": "0.0.0",
-  "description": "",
+  "name": "automax",
+  "version": "0.0.1",
+  "description": "Make your mandane browser task automated and run them while you are browsing.",
   "homepage": "",
   "author": {
     "name": "Pasindu Perera",
@@ -15,14 +15,14 @@
   "keywords": [
     "browser",
     "automation",
-    "repl",
     "productivity"
   ],
-  "repository": "udnisap/gollum",
+  "repository": "udnisap/automax",
   "dependencies": {
+    "commander": "^2.9.0",
     "lodash": "^3.10.1",
-    "minimist": "^1.2.0",
     "q": "^1.4.1",
+    "vorpal": "^1.4.0",
     "webdriverio": "^3.2.6"
   },
   "devDependencies": {
@@ -38,6 +38,9 @@
     "del": "^2.0.2",
     "babel-core": "^5.5.0",
     "isparta": "^3.0.3"
+  },
+  "bin": {
+    "automax": "dist/index.js"
   },
   "scripts": {
     "prepublish": "gulp prepublish",
