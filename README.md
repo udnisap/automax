@@ -31,3 +31,7 @@ Apache-2.0 © [Pasindu Perera](http://udnisap.js.org)
 [daviddm-url]: https://david-dm.org/udnisap/automax
 [coveralls-image]: https://coveralls.io/repos/udnisap/automax/badge.svg
 [coveralls-url]: https://coveralls.io/r/udnisap/automax
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/udnisap/automax/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
