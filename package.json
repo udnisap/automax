@@ -69,7 +69,6 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test:with-coverage -- -R dot && npm run test:check-coverage",
       "commit-msg": "validate-commit-msg"
     },
     "commitizen": {
