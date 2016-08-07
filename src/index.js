@@ -1,9 +1,10 @@
 #!/usr/bin/env node
+
 require("babel-core/register");
-var automax = require('./automax')({});
-var fs = require('fs');
-var _ = require('lodash');
-var path = require('path');
+const automax = require('./automax')({});
+const fs = require('fs');
+const _ = require('lodash');
+const path = require('path');
 
 // Loop through plugins directory
 _.chain(fs.readdirSync(path.join(__dirname, 'plugins')))

@@ -13,7 +13,7 @@
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "test:publish-coverage": "codecov",
     "prebuild": "npm run clean",
-    "build": "babel src --out-dir lib",
+    "build": "babel src --out-dir lib && chmod +x ./lib/index.js",
     "prepublish": "in-install || npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "clean": "npm-run-all --parallel clean:*",
@@ -66,6 +66,7 @@
     "validate-commit-msg": "^2.6.1"
   },
   "dependencies": {
+    "commander": "^2.9.0",
     "in-publish": "^2.0.0"
   },
   "config": {

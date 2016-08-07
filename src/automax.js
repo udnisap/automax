@@ -39,6 +39,7 @@ You can automate all your browser related tasks with automax. To starts with run
       .catch(e => {
         vorpal.log('Could not start Automax as it can not connected to Selenium server. Server Resposne ', e);
       });
+    return vorpal;
   }
 
   initialize(){
@@ -71,7 +72,7 @@ You can automate all your browser related tasks with automax. To starts with run
       throw new Error('Namespace already registered');
     }
 
-    console.log(`Registering plugin to ${namespace}`);
+    console.log(`Registering plugin ${namespace}`);
     this.mockVorpal(namespace);
     this.vorpal.use(module(this));
     this.unMockVorpal();
