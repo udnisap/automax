@@ -9,6 +9,8 @@ node_js:
   - '6'
   - '5'
   - '4'
+before_install:
+  - npm i -g npm@^2.0.0
 before_script:
   - npm prune
 script:
@@ -16,10 +18,10 @@ script:
   # - npm run test:with-coverage
   # - npm run test:check-coverage
 after_success:
-  # - npm run test:publish-coverage
-  # No need to build as it is done in the prepublish script
+  - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
+  - python travis_after_all.py
+  - export $(cat .to_export_back) &> /dev/null
   - npm run semantic-release
 branches:
-  only:
-    - master
-    - /^greenkeeper-.*$/
+  except:
+    - /^v\d+\.\d+\.\d+$/
