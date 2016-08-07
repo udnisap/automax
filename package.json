@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "npm run build && node lib/index.js ",
+    "test:noop": "echo 'test ignored'",
     "test": "cross-env BABEL_ENV=test mocha --compilers js:babel-core/register --recursive",
     "test:with-coverage": "npm run clean:coverage && cross-env BABEL_ENV=test nyc --reporter=lcov mocha --compilers js:babel-core/register --recursive",
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
@@ -67,7 +68,10 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "in-publish": "^2.0.0"
+    "in-publish": "^2.0.0",
+    "lodash": "^4.14.1",
+    "vorpal": "^1.11.4",
+    "webdriverio": "^4.2.3"
   },
   "config": {
     "ghooks": {
