@@ -6,9 +6,10 @@ var defaultOptions = {
 };
 
 
-export default function (options = defaultOptions){
+export default function (options){
+  const opts = Object.assign({}, defaultOptions, options)
   var browser = require('webdriverio')
-    .remote(options)
+    .remote(opts)
     .init();
 
   return {

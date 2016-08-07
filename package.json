@@ -1,53 +1,88 @@
 {
   "name": "automax",
-  "version": "0.0.1",
+  "version": "0.0.0-semantic-release",
   "description": "Make your mandane browser task automated and run them while you are browsing.",
-  "homepage": "",
+  "main": "./lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "npm run build && node lib/index.js ",
+    "test:noop": "echo 'test ignored'",
+    "test": "cross-env BABEL_ENV=test mocha --compilers js:babel-core/register --recursive",
+    "test:with-coverage": "npm run clean:coverage && cross-env BABEL_ENV=test nyc --reporter=lcov mocha --compilers js:babel-core/register --recursive",
+    "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "test:publish-coverage": "codecov",
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir lib && chmod +x ./lib/index.js",
+    "prepublish": "in-install || npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "clean": "npm-run-all --parallel clean:*",
+    "clean:build": "rimraf lib",
+    "clean:coverage": "rimraf .nyc_output coverage"
+  },
+  "bin": {
+    "automax": "lib/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/udnisap/automax.git"
+  },
+  "keywords": [],
   "author": {
     "name": "Pasindu Perera",
     "email": "perera.pasindu@gmail.com",
-    "url": "http://udnisap.js.org"
+    "website": "http://udnisap.js.org"
   },
-  "files": [
-    "dist"
-  ],
-  "main": "dist/index.js",
-  "keywords": [
-    "browser",
-    "automation",
-    "productivity"
-  ],
-  "repository": "udnisap/automax",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/udnisap/automax/issues"
+  },
+  "homepage": "https://github.com/udnisap/automax#readme",
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-__coverage__": "^11.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "chai": "^3.5.0",
+    "codecov": "^1.0.1",
+    "commitizen": "^2.8.2",
+    "cross-env": "^1.0.8",
+    "cz-conventional-changelog": "^1.1.6",
+    "eslint": "^2.12.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.2",
+    "eslint-plugin-react": "^5.1.1",
+    "ghooks": "^1.2.4",
+    "mocha": "^2.5.1",
+    "npm-run-all": "^2.1.2",
+    "nyc": "^6.4.4",
+    "rimraf": "^2.5.2",
+    "semantic-release": "^4.3.5",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0",
+    "validate-commit-msg": "^2.6.1"
+  },
   "dependencies": {
     "commander": "^2.9.0",
-    "lodash": "^3.10.1",
-    "q": "^1.4.1",
-    "vorpal": "^1.4.0",
-    "webdriverio": "^3.2.6"
+    "in-publish": "^2.0.0",
+    "lodash": "^4.14.1",
+    "vorpal": "^1.11.4",
+    "webdriverio": "^4.2.3"
   },
-  "devDependencies": {
-    "gulp": "^3.6.0",
-    "gulp-eslint": "^1.0.0",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^0.9.0",
-    "gulp-mocha": "^2.0.0",
-    "gulp-plumber": "^1.0.0",
-    "gulp-nsp": "^2.1.0",
-    "gulp-coveralls": "^0.1.0",
-    "gulp-babel": "^6.0.0",
-    "del": "^2.0.2",
-    "babel-core": "^6.0.0",
-    "babel-loader": "^6.0.0",
-    "babel-preset-es2015": "^6.0.0",
-    "isparta": "^3.0.3"
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    },
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
-  "bin": {
-    "automax": "dist/index.js"
-  },
-  "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp",
-    "start": "node dist/index.js"
-  },
-  "license": "Apache-2.0"
+  "nyc": {
+    "instrument": false,
+    "sourceMap": false
+  }
 }

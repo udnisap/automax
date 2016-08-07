@@ -1,7 +1,10 @@
-# automax 
+# automax
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> 
+Make your mandane browser task automated and run them while you are browsing.
+
+[![Travis](https://img.shields.io/travis/udnisap/automax.svg)](https://travis-ci.org/udnisap/automax)
+[![Codecov](https://img.shields.io/codecov/c/github/udnisap/automax.svg)](https://codecov.io/gh/udnisap/automax)
+[![npm](https://img.shields.io/npm/v/automax.svg)](https://npmjs.com/package/automax)
 
 
 ## Install
@@ -34,4 +37,5 @@ Apache-2.0 © [Pasindu Perera](http://udnisap.js.org)
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/udnisap/automax/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 
