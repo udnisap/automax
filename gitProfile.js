@@ -1,15 +1,22 @@
-var Promise = require("bluebird");
 var co = require("co");
 
-const name = process.argv[2];
-const password = process.argv[3];
-const pic = process.argv[4];
-
-console.log(name, password);
-console.log = () => {}
 const automax = require('./lib/index.js');
+
+const getState = (path) => automax.exec(`cinco getState ${path}`);
+const getActions = () => automax.exec('cinco actions');
+
+
 co(function*(){
-  const users = yield automax.exec(`github login ${name} ${password}`);
-  const upload = yield automax.exec(`github changeAvatar /tmp/profiles/${pic}.jpg`)
+  yield automax.exec('cinco start');
+  yield automax.exec("cinco tap 'Mohan R.'");
+  yield automax.exec("cinco put  'Enter Password' 1111");
+  yield automax.exec("cinco tap 'Sign In'");
+  yield automax.exec('cinco tap "Order Queue"');
+  yield automax.exec("cinco tap 91");
+
+  const auth = yield getState('auth');
+  console.log(auth);
+  const actions = yield getActions();
+  console.log(actions);
 });
 

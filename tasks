@@ -1,0 +1,6 @@
+start
+tap 'Mohan R.'
+put  'Enter Password' 1111
+tap 'Sign In'
+tap "Order Queue"
+tap 91
