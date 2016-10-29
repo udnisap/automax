@@ -7,6 +7,7 @@ if (exit) {
 }
 
 vorpal
+  .history('automax')
   .command('exit', 'Quit automax')
   .alias('quit')
   .action(function (){
