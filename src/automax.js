@@ -49,6 +49,10 @@ You can automate all your browser related tasks with automax. To starts with run
 
     //Exit Selenium session once over
     var window = this.driver.current;
+    const exit = vorpal.find('exit');
+    if (exit) {
+        exit.remove();
+    }
     vorpal
       .command('exit', 'Quit automax')
       .alias('quit')
@@ -57,10 +61,6 @@ You can automate all your browser related tasks with automax. To starts with run
           process.exit(0);
         })
       });
-
-    process.on('exit', function () {
-      return window.end();
-    });
   }
 
   /**
