@@ -49,8 +49,17 @@ You can automate all your browser related tasks with automax. To starts with run
 
     //Exit Selenium session once over
     var window = this.driver.current;
-    process.on('beforeExit', function () {
-      window.end();
+    vorpal
+      .command('exit', 'Quit automax')
+      .alias('quit')
+      .action(function* (){
+        window.end().then(()=>{
+          process.exit(0);
+        })
+      });
+
+    process.on('exit', function () {
+      return window.end();
     });
   }
 
@@ -90,19 +99,13 @@ You can automate all your browser related tasks with automax. To starts with run
   unMockVorpal() {
     if (_.isFunction(this.vopalCommand)){
       this.vorpal.command = this.vopalCommand;
-      delete this.vorpal.namespaces;
+      delete this.vorpal.namespace;
     }
   }
 }
 
 
 //Singleton instance of Automax
-var instance;
 module.exports = function(options){
-  if (!instance){
-    instance = new Automax(options);
-  }else {
-    instance.vorpal.log('Warning!: Automax is already running. Reusing existing automax session');
-  }
-  return instance;
+  return new Automax(options);
 };

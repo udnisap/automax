@@ -1,3 +1,4 @@
+const fs = require('fs');
 module.exports = function ({vorpal, driver: {current: browser}}){
   function registerMethod(property){
     vorpal
@@ -19,4 +20,5 @@ module.exports = function ({vorpal, driver: {current: browser}}){
   for (var property in browser){
     registerMethod(property);
   }
+
 };

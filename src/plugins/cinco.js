@@ -4,6 +4,8 @@ module.exports = function({ vorpal, driver: { current, state }}){
     .command('start', 'Check for state')
     .action(() => current
       .url('http://localhost:8888'));
+      // .url('http://localhost:8080/pos?index.html?mid=c0020-10497318&env=tst6&deviceId=5'));
+
 
   vorpal
     .command('actions', 'Get the console actions')
@@ -20,17 +22,6 @@ module.exports = function({ vorpal, driver: { current, state }}){
           .value();
         }));
 
-  vorpal
-    .command('select <user>', 'Select user from user list')
-    .action(({user}) => current
-      .click(`span*=${user}`)
-    );
-
-  vorpal
-    .command('login <password>', 'Login to the pos')
-    .action(({ password }) => current
-    .setValue('#ctaf_login_password', password)
-    .click('//*[@id="ctaf_login_submit"]')); 
   
   vorpal
     .command('getState <state>', 'get state value')
@@ -47,7 +38,7 @@ module.exports = function({ vorpal, driver: { current, state }}){
       if(!res){
         throw Error('Element not found');
       } else {
-        return true;
+        return Promise.resolve(true);
       }
     }));
 
@@ -60,10 +51,32 @@ module.exports = function({ vorpal, driver: { current, state }}){
       if(!res){
         throw Error('Element not found');
       } else {
-        return true;
+        return Promise.resolve(true);
       }
     }));
 
+  vorpal
+    .command('highlight <param>', 'Highlight mutliple parameters')
+    .action(({ param}) => current
+      .highlight(param)
+      .then((res) => {
+        console.log(res.value);
+      }));
+
+
+  vorpal
+    .command('tapId <param>', 'Tap based on highlighted id')
+    .action(({ param }) => current
+    .execute(`
+      var main = document.getElementById('app');
+      _.range(1,main.childNodes.length).map(val => {
+      var element = main.childNodes[1];
+      element.parentNode.removeChild(element);
+      })`)
+    .elementIdClick(param)
+          .catch(()=>true)
+
+      );
 
 
 }
