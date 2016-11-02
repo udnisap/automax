@@ -31,15 +31,12 @@ You can automate all your browser related tasks with automax. To start with run 
     `;
     var vorpal = this.vorpal;
     vorpal.log(banner);
-    this.driver.current
-      .then((browser) => {
-        this.initialize();
-        return browser;
-      })
+    return this.driver.current
+      .then((browser) => this.initialize())
+      .then(() => vorpal)
       .catch(e => {
         vorpal.log('Could not start Automax as it can not connected to Selenium server. Server Resposne ', e);
       });
-    return vorpal;
   }
 
   initialize(){
@@ -52,6 +49,21 @@ You can automate all your browser related tasks with automax. To start with run 
     process.on('beforeExit', function () {
       window.end();
     });
+    const browser = this.driver.current;
+    return browser
+      .sessions()
+      .then(({value:sessions}) => {
+        console.log('Avalialble sessions: ');
+        sessions.map(s => console.log(s.id));
+        if (_.isEmpty(sessions)) {
+          console.log('Initializing new session');
+          return browser.init();
+        } else {
+          const currentSession = _.last(sessions).id;
+          console.log(`Connecting to ${currentSession}`)
+          return browser.sessionID(currentSession);
+        }
+      })
   }
 
   /**

@@ -14,7 +14,7 @@ _.chain(fs.readdirSync(path.join(__dirname, 'plugins')))
   .value();
 
 
-automax.start();
+module.exports = automax;
 
 
 
