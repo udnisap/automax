@@ -20,28 +20,16 @@ export default function (options){
   const opts = Object.assign({}, defaultOptions, options)
   var browser = require('webdriverio')
     .remote(opts)
+    // .init();
 
-  browser
-    .sessions()
-    .then(({value:sessions}) => {
-      console.log('Avalialble sessions: ');
-      sessions.map(s => console.log(s.id));
-      if (_.isEmpty(sessions)) {
-        console.log('Initializing new session');
-        browser.init();
-      } else {
-        const currentSession = _.last(sessions).id;
-        console.log(`Connecting to ${currentSession}`)
-        browser.sessionID(currentSession);
-      }
-    })
 
   browser.addCommand('sessionID', function(sessionID){
     if (sessionID) {
-      return this.requestHandler.sessionID = sessionID;
+      this.requestHandler.sessionID = sessionID;
     } else {
-      return this.requestHandler.sessionID;
+      this.requestHandler.sessionID;
     }
+    return browser;
   })
 
   browser
