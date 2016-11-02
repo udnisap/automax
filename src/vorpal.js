@@ -11,8 +11,10 @@ vorpal
     for(let i = 0; i < commands.length; i++){
       console.log(commands[i]);
       yield vorpal.execSync(`${namespace} ${commands[i]}`);
-    }
-  });
+    }});
+
+vorpal
+  .history('automax');
 
 module.exports = vorpal;
 

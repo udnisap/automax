@@ -17,7 +17,7 @@ class Automax{
    */
   start(){
     var banner = `
-                               __
+                            __
     (\\   /)  _____   __ ___/  |_  ____   _____ _____  ___  ___
     .\\\\_//. \\__  \\ |  |  \\   __\\/  _ \\ /     \\\\__  \\ \\  \\/  /
      )0 0(   / __ \\|  |  /|  | (  <_> )  Y Y  \\/ __ \\_>    <
@@ -26,7 +26,7 @@ class Automax{
 
 
 Welcome to ${this.name}!
-You can automate all your browser related tasks with automax. To starts with run help
+You can automate all your browser related tasks with automax. To start with run help
 
     `;
     var vorpal = this.vorpal;
