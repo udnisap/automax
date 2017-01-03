@@ -2,6 +2,7 @@
 import vorpal from './vorpal';
 import _ from 'lodash';
 import webdriver from './webdriver';
+import builtIn from './builtIn';
 
 class Automax{
 
@@ -49,6 +50,8 @@ You can automate all your browser related tasks with automax. To start with run 
     process.on('beforeExit', function () {
       window.end();
     });
+
+    this.vorpal.use(builtIn(this));
     const browser = this.driver.current;
     return browser
       .sessions()

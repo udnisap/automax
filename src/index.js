@@ -5,6 +5,7 @@ const automax = require('./automax')({});
 const fs = require('fs');
 const _ = require('lodash');
 const path = require('path');
+const commander = require('commander');
 
 // Loop through plugins directory
 _.chain(fs.readdirSync(path.join(__dirname, 'plugins')))
