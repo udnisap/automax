@@ -1,10 +1,10 @@
 var _ = require('lodash');
 var Promise = require('bluebird');
 var defaultOptions = {
-  // desiredCapabilities: {
-  //   browserName: 'chrome',
+  desiredCapabilities: {
+    browserName: 'chrome',
   //   platformName: 'Android'
-  // },
+  },
   // host: '0.0.0.0',
   // port: '4444'
 };
