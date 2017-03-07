@@ -3,7 +3,7 @@ module.exports = function ({vorpal, driver: {current: browser}}){
   function registerMethod(property){
     vorpal
       .command(`${property} [params...]`, 'Refer http://webdriver.io/api')
-      .action(function *({params}){
+      .action(function *({params = []}){
         const cleanedParams = params.map(i => i.replace ? i.replace('\\','') : i)
         const res = yield Promise.resolve(browser[property].apply(this, cleanedParams))
         if (res.value){

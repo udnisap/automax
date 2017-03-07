@@ -3,10 +3,10 @@ var Promise = require('bluebird');
 var defaultOptions = {
   desiredCapabilities: {
     browserName: 'chrome',
-  //   platformName: 'Android'
+    // platformName: 'Android'
   },
   // host: '0.0.0.0',
-  // port: '4444'
+  // port: '4723'
 };
 
 const htmlElms = ['span', 'div', 'input', 'li'];
