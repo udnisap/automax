@@ -68,11 +68,13 @@
     "validate-commit-msg": "^2.6.1"
   },
   "dependencies": {
+    "better-console": "^1.0.0",
     "bluebird": "^3.4.7",
     "co-vorpal": "^1.0.0",
     "commander": "^2.9.0",
     "in-publish": "^2.0.0",
     "lodash": "^4.14.1",
+    "url-parse": "^1.1.8",
     "vorpal": "^1.11.4",
     "webdriverio": "^4.2.3"
   },

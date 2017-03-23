@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
 import Promise from 'bluebird';
+import urlParse from 'url-parse';
 
 module.exports = function ({vorpal, driver: {current}}){
 
@@ -58,8 +59,8 @@ module.exports = function ({vorpal, driver: {current}}){
 
   vorpal
     .command('syncCookies [file]', 'Sync Browser cookies with the file')
-    .action(function *({file = '/tmp/cookies.json'} = {}){
-      let currentCookies = yield current.cookie();
+    .action(async ({file = '/tmp/cookies.json'} = {}) => {
+      let currentCookies = await current.cookie();
       currentCookies = currentCookies.value;
       try {
         const savedCookies = require(file);
@@ -70,7 +71,10 @@ module.exports = function ({vorpal, driver: {current}}){
       } catch (e){
         console.log('cookies in the file are discared');
       }
+      console.log(currentCookies)
       fs.writeFileSync(file, JSON.stringify(currentCookies) + '\n');
-      current.cookie('post', currentCookies);
-    })
+      await Promise.mapSeries(currentCookies,
+        cookie => current.setCookie(cookie).catch(e => e)
+      );
+    });
 };
